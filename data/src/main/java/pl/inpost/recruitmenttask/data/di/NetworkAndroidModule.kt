@@ -7,13 +7,24 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import pl.inpost.recruitmenttask.data.base.ApiTypeAdapter
+import pl.inpost.recruitmenttask.data.database.dao.ShipmentDAO
 import pl.inpost.recruitmenttask.data.shipments.MockShipmentApi
 import pl.inpost.recruitmenttask.data.shipments.ShipmentApi
+import pl.inpost.recruitmenttask.data.shipments.ShipmentGateway
+import pl.inpost.recruitmenttask.domain.shipments.ShipmentRepository
 
 @InstallIn(SingletonComponent::class)
 @Module
 class NetworkAndroidModule {
+    @Provides
+    internal fun shipmentApi(
+        @ApplicationContext context: Context,
+        apiTypeAdapter: ApiTypeAdapter
+    ): ShipmentApi = MockShipmentApi(context, apiTypeAdapter)
 
     @Provides
-    internal fun shipmentApi(@ApplicationContext context: Context, apiTypeAdapter: ApiTypeAdapter): ShipmentApi = MockShipmentApi(context, apiTypeAdapter)
+    fun providesShipmentRepository(
+        shipmentApi: ShipmentApi,
+        shipmentDAO: ShipmentDAO
+    ): ShipmentRepository = ShipmentGateway(shipmentApi, shipmentDAO)
 }
