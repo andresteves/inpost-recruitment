@@ -1,29 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/shipment_number_header_view"
+        style="@style/ShipmentHeader"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="#E6E0E0"
+        android:layout_marginStart="@dimen/margin_horizontal"
+        android:layout_marginTop="@dimen/margin_top_space"
+        android:layout_marginEnd="@dimen/margin_sm"
+        app:layout_constraintEnd_toStartOf="@+id/shipment_type_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/ship_number_header" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/shipment_number_view"
+        style="@style/ShipmentNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_horizontal"
+        android:layout_marginEnd="@dimen/margin_sm"
+        app:layout_constraintEnd_toStartOf="@+id/shipment_type_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shipment_number_header_view"
+        tools:text="235678654323567889762231" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/shipment_type_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_shipment_type"
+        android:layout_marginEnd="@dimen/margin_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_kurier" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        app:layout_constraintGuide_percent="0.5" />
 
-        <TextView
-            android:id="@+id/shipmentNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="1234553459359043" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/shipment_status_header_view"
+        style="@style/ShipmentHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_horizontal"
+        android:layout_marginTop="@dimen/margin_top_space"
+        app:layout_constraintEnd_toStartOf="@id/guideline_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shipment_number_view"
+        tools:text="@string/ship_status_header" />
 
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            tools:text="Gotowa do odbioru" />
-    </LinearLayout>
-</LinearLayout>
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/shipment_status_view"
+        style="@style/ShipmentBody"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_horizontal"
+        app:layout_constraintEnd_toStartOf="@id/guideline_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shipment_status_header_view"
+        tools:text="Gotowa do odbioru" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/shipment_secondary_status_header_view"
+        style="@style/ShipmentHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_horizontal"
+        app:layout_constraintStart_toStartOf="@id/guideline_view"
+        app:layout_constraintTop_toTopOf="@id/shipment_status_header_view"
+        tools:text="CZEKA NA ODBIÓR DO" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/shipment_date_view"
+        style="@style/ShipmentNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/margin_horizontal"
+        android:layout_marginStart="@dimen/margin_horizontal"
+        app:layout_constraintStart_toStartOf="@id/guideline_view"
+        app:layout_constraintTop_toBottomOf="@id/shipment_secondary_status_header_view"
+        tools:text="pn. | 14.06.18 | 11:30" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/shipment_user_header_view"
+        style="@style/ShipmentHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_horizontal"
+        android:layout_marginTop="@dimen/margin_top_space"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shipment_status_view"
+        tools:text="@string/ship_user_header" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/shipment_user_view"
+        style="@style/ShipmentBody"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_horizontal"
+        android:layout_marginEnd="@dimen/margin_sm"
+        app:layout_constraintEnd_toStartOf="@id/more_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shipment_user_header_view"
+        tools:text="useremail@mail.com" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/more_view"
+        style="@style/ShipmentBody"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/margin_sm"
+        android:layout_marginEnd="@dimen/margin_horizontal"
+        android:drawableEnd="@drawable/ic_arrow_forward"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="@string/more" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

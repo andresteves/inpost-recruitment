@@ -8,6 +8,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import pl.inpost.recruitmenttask.data.database.AppDatabase
+import pl.inpost.recruitmenttask.data.database.converter.DateTimeConverter
+import pl.inpost.recruitmenttask.data.database.converter.ListConverter
 
 private const val DB_NAME = "recruitment"
 
@@ -19,7 +21,10 @@ internal class DatabaseModule {
     fun provideDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(
         context,
         AppDatabase::class.java, DB_NAME
-    ).build()
+    )
+        .addTypeConverter(ListConverter())
+        .addTypeConverter(DateTimeConverter())
+        .build()
 
     @Provides
     fun provideShipmentDAO(database: AppDatabase) = database.shipmentDao()

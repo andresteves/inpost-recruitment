@@ -1,6 +1,6 @@
 package pl.inpost.recruitmenttask.data.shipments.model
 
-import java.time.ZonedDateTime
+import java.util.Date
 
 data class ShipmentNetwork(
     val number: String,
@@ -8,9 +8,9 @@ data class ShipmentNetwork(
     val status: String,
     val eventLog: List<EventLogNetwork>,
     val openCode: String?,
-    val expiryDate: ZonedDateTime?,
-    val storedDate: ZonedDateTime?,
-    val pickUpDate: ZonedDateTime?,
+    val expiryDate: Date?,
+    val storedDate: Date?,
+    val pickUpDate: Date?,
     val receiver: CustomerNetwork?,
     val sender: CustomerNetwork?,
     val operations: OperationsNetwork

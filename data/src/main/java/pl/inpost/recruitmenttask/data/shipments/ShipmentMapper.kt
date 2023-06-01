@@ -62,7 +62,7 @@ private fun statusToDomain(status: String) = when (status) {
     "OUT_FOR_DELIVERY" -> ShipmentStatus.OUT_FOR_DELIVERY
     "READY_TO_PICKUP" -> ShipmentStatus.READY_TO_PICKUP
     "PICKUP_TIME_EXPIRED" -> ShipmentStatus.PICKUP_TIME_EXPIRED
-    else -> throw IllegalStateException("invalid status")
+    else -> ShipmentStatus.OTHER
 }
 
 private fun EventLogNetwork.toDomain() = EventLogDomain(name, date)

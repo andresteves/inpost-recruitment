@@ -1,4 +1,4 @@
-package pl.inpost.recruitmenttask.data.shipments
+package pl.inpost.recruitmenttask.data.mock
 
 import android.content.Context
 import com.squareup.moshi.Moshi
@@ -6,7 +6,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.delay
 import pl.inpost.recruitmenttask.data.R
-import pl.inpost.recruitmenttask.data.base.ApiTypeAdapter
+import pl.inpost.recruitmenttask.data.shipments.ShipmentApi
 import pl.inpost.recruitmenttask.data.shipments.model.CustomerNetwork
 import pl.inpost.recruitmenttask.data.shipments.model.EventLogNetwork
 import pl.inpost.recruitmenttask.data.shipments.model.OperationsNetwork
@@ -14,7 +14,7 @@ import pl.inpost.recruitmenttask.data.shipments.model.ShipmentNetwork
 import pl.inpost.recruitmenttask.data.shipments.model.ShipmentStatus
 import pl.inpost.recruitmenttask.data.shipments.model.ShipmentType
 import pl.inpost.recruitmenttask.data.shipments.model.ShipmentsResponse
-import java.time.ZonedDateTime
+import java.util.Date
 import kotlin.random.Random
 
 internal class MockShipmentApi(
@@ -56,9 +56,9 @@ internal class MockShipmentApi(
         operations: OperationsNetwork = mockOperationsNetwork(),
         eventLog: List<EventLogNetwork> = emptyList(),
         openCode: String? = null,
-        expireDate: ZonedDateTime? = null,
-        storedDate: ZonedDateTime? = null,
-        pickupDate: ZonedDateTime? = null
+        expireDate: Date? = null,
+        storedDate: Date? = null,
+        pickupDate: Date? = null
     ) = ShipmentNetwork(
         number = number,
         shipmentType = type.name,

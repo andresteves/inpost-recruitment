@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_sm">8dp</dimen>
+    <dimen name="margin_horizontal">20dp</dimen>
+    <dimen name="margin_lg">32dp</dimen>
+    <dimen name="margin_top_space">16dp</dimen>
+    <dimen name="margin_shipment_type">24dp</dimen>
+</resources>

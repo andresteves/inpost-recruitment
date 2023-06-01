@@ -1,8 +1,8 @@
 package pl.inpost.recruitmenttask.data.shipments.model
 
-import java.time.ZonedDateTime
+import java.util.Date
 
 data class EventLogNetwork(
     val name: String,
-    val date: ZonedDateTime
+    val date: Date?
 )

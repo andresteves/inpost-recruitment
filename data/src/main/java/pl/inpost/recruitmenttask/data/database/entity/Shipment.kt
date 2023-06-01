@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import pl.inpost.recruitmenttask.data.shipments.model.CustomerNetwork
 import pl.inpost.recruitmenttask.data.shipments.model.EventLogNetwork
 import pl.inpost.recruitmenttask.data.shipments.model.OperationsNetwork
-import java.time.ZonedDateTime
+import java.util.Date
 
 @Entity
 data class Shipment(
@@ -14,11 +14,11 @@ data class Shipment(
     val archived: Boolean = false,
     val shipmentType: String,
     val status: String,
-    @Embedded val eventLog: List<EventLogNetwork>,
+    val eventLog: List<EventLogNetwork>,
     val openCode: String?,
-    val expiryDate: ZonedDateTime?,
-    val storedDate: ZonedDateTime?,
-    val pickUpDate: ZonedDateTime?,
+    val expiryDate: Date?,
+    val storedDate: Date?,
+    val pickUpDate: Date?,
     @Embedded(prefix = "receiver_") val receiver: CustomerNetwork?,
     @Embedded(prefix = "sender_")val sender: CustomerNetwork?,
     @Embedded val operations: OperationsNetwork

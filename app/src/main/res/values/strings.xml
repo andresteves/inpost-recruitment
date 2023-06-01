@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">InPost Recruitment Task</string>
+
+    <string name="more">więcej</string>
+    <string name="ship_number_header">NR PRZESYŁKI</string>
+    <string name="ship_status_header">STATUS</string>
+    <string name="ship_user_header">NADAWCA</string>
 </resources>

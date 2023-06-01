@@ -1,10 +1,9 @@
-package pl.inpost.recruitmenttask.presentation.home
+package pl.inpost.recruitmenttask
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
-import pl.inpost.recruitmenttask.R
-import pl.inpost.recruitmenttask.presentation.shipmentList.ShipmentListFragment
+import pl.inpost.recruitmenttask.ui.shipments.ShipmentListFragment
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {

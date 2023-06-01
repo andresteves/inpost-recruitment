@@ -1,8 +1,10 @@
-package pl.inpost.recruitmenttask.presentation.shipmentList
+package pl.inpost.recruitmenttask.ui.shipments
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,13 +27,7 @@ class ShipmentListViewModel @Inject constructor(
         refreshData()
     }
 
-    private fun refreshData() = viewModelScope.launch {
-        shipmentRepository.shipments().collect {
-            _state.value = State.Shipments(it)
-        }
-    }
-
-    fun archive(shipmentDomain: ShipmentDomain) = viewModelScope.launch {
+    fun archive(shipmentDomain: ShipmentDomain) = viewModelScope.launch(Dispatchers.IO) {
         if (shipmentDomain.archived) {
             shipmentRepository.unarchive(shipmentDomain)
         } else {
@@ -41,6 +37,16 @@ class ShipmentListViewModel @Inject constructor(
 
     fun refresh() {
         refreshData()
+    }
+
+    private fun refreshData() = viewModelScope.launch(Dispatchers.IO) {
+        shipmentRepository.shipments().collect {
+            _state.value = State.Shipments(it)
+        }
+    }
+
+    private fun handleShipments() {
+
     }
 }
 
