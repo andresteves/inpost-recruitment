@@ -10,4 +10,7 @@
 
     <color name="shipment_header">#929497</color>
     <color name="shipment_items">#404041</color>
+    <color name="shipment_bg">#F2F2F2</color>
+    <color name="header_divider">#E9E9E9</color>
+    <color name="header_text">#BBBDBF</color>
 </resources>
