@@ -15,9 +15,9 @@ import pl.inpost.recruitmenttask.domain.shipments.ShipmentRepository
 
 @InstallIn(SingletonComponent::class)
 @Module
-class NetworkAndroidModule {
+internal class NetworkAndroidModule {
     @Provides
-    internal fun shipmentApi(
+    fun shipmentApi(
         @ApplicationContext context: Context,
         apiTypeAdapter: ApiTypeAdapter
     ): ShipmentApi = MockShipmentApi(context, apiTypeAdapter)

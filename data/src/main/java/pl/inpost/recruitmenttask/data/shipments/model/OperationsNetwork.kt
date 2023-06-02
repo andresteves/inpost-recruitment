@@ -8,7 +8,7 @@ package pl.inpost.recruitmenttask.data.shipments.model
  * @param expandAvizo - shipment time to pick up can be expanded - show button
  * @param endOfWeekCollection - shipment will be available to pick up over the weekend - change colors
  */
-data class OperationsNetwork(
+internal data class OperationsNetwork(
     val manualArchive: Boolean,
     val delete: Boolean,
     val collect: Boolean,

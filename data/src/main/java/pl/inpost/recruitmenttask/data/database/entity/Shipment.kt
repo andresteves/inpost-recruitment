@@ -9,7 +9,7 @@ import pl.inpost.recruitmenttask.data.shipments.model.OperationsNetwork
 import java.util.Date
 
 @Entity
-data class Shipment(
+internal data class Shipment(
     @PrimaryKey val number: String,
     val archived: Boolean = false,
     val shipmentType: String,

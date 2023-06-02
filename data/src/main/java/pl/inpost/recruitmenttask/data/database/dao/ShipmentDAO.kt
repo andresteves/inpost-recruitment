@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import pl.inpost.recruitmenttask.data.database.entity.Shipment
 
 @Dao
-interface ShipmentDAO {
+internal interface ShipmentDAO {
 
     @Query("SELECT * FROM shipment WHERE archived = 0")
     fun loadAll(): Flow<List<Shipment>>

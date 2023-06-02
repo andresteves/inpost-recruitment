@@ -13,7 +13,7 @@ import pl.inpost.recruitmenttask.domain.shipments.model.ShipmentStatus
 import pl.inpost.recruitmenttask.domain.shipments.model.ShipmentType
 
 
-fun Shipment.toDomain() = ShipmentDomain(
+internal fun Shipment.toDomain() = ShipmentDomain(
     number,
     archived,
     shipmentTypeDomain(shipmentType),
@@ -28,7 +28,7 @@ fun Shipment.toDomain() = ShipmentDomain(
     operations.toDomain()
 )
 
-fun ShipmentDomain.toDB() = Shipment(
+internal fun ShipmentDomain.toDB() = Shipment(
     number,
     archived,
     shipmentType.name,
@@ -99,7 +99,7 @@ private fun OperationsDomain.toData() = OperationsNetwork(
     endOfWeekCollection = endOfWeekCollection
 )
 
-fun ShipmentNetwork.toDB(archived: Boolean) = Shipment(
+internal fun ShipmentNetwork.toDB(archived: Boolean) = Shipment(
     number,
     archived,
     shipmentType,

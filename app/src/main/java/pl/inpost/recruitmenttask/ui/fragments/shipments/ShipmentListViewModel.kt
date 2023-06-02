@@ -4,9 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import pl.inpost.recruitmenttask.R
 import pl.inpost.recruitmenttask.domain.shipments.ShipmentRepository
@@ -25,8 +28,11 @@ class ShipmentListViewModel @Inject constructor(
     val state: StateFlow<State>
         get() = _state.asStateFlow()
 
-    private val _state: MutableStateFlow<State> = MutableStateFlow(State.Loading)
+    val event: Flow<Event>
+        get() = _event.receiveAsFlow()
 
+    private val _state: MutableStateFlow<State> = MutableStateFlow(State.Loading)
+    private val _event = Channel<Event>(Channel.BUFFERED)
     private lateinit var originalShipments: List<ShipmentDomain>
 
     init {
@@ -42,9 +48,13 @@ class ShipmentListViewModel @Inject constructor(
     }
 
     private fun refreshData() = viewModelScope.launch(Dispatchers.IO) {
-        shipmentRepository.shipments().collect {
-            originalShipments = it
-            handleShipments(it)
+        shipmentRepository.shipments().collect { result ->
+            result.onSuccess {
+                originalShipments = it
+                handleShipments(it)
+            }.onFailure {
+                _event.send(Event.Error)
+            }
         }
     }
 
@@ -74,9 +84,7 @@ class ShipmentListViewModel @Inject constructor(
         shipmentDomains
             .filter { !it.operations.highlight }
             .sortedWith(ShipmentComparator())
-            .groupBy {
-                it.status
-            }.map { mapShipments ->
+            .groupBy { it.status }.map { mapShipments ->
                 items.add(ShipmentListItem.ListHeader(mapShipments.key.nameRes))
                 mapShipments.value.forEach { items.add(ShipmentListItem.ListItem(it)) }
             }
@@ -89,4 +97,8 @@ sealed class State {
     object Loading : State()
 
     data class Shipments(val shipments: List<ShipmentListItem>) : State()
+}
+
+sealed class Event {
+    object Error : Event()
 }

@@ -2,7 +2,7 @@ package pl.inpost.recruitmenttask.data.shipments.model
 
 import java.util.Date
 
-data class ShipmentNetwork(
+internal data class ShipmentNetwork(
     val number: String,
     val shipmentType: String,
     val status: String,

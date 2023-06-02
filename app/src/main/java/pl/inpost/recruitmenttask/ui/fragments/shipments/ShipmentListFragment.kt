@@ -89,6 +89,12 @@ class ShipmentListFragment : Fragment() {
                 }
             }
         }
+
+        viewModel.event.collectWhenStarted(viewLifecycleOwner) { event ->
+            when (event) {
+                Event.Error -> {}
+            }
+        }
     }
 
     private fun shipmentClicked(shipmentDomain: ShipmentDomain) {

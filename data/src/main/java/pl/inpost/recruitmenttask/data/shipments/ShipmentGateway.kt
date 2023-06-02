@@ -5,6 +5,7 @@ import pl.inpost.recruitmenttask.data.database.dao.ShipmentDAO
 import pl.inpost.recruitmenttask.data.database.entity.Shipment
 import pl.inpost.recruitmenttask.domain.shipments.ShipmentRepository
 import pl.inpost.recruitmenttask.domain.shipments.model.ShipmentDomain
+import java.lang.Exception
 import javax.inject.Inject
 
 internal class ShipmentGateway @Inject constructor(
@@ -13,14 +14,19 @@ internal class ShipmentGateway @Inject constructor(
 ) : ShipmentRepository {
 
     override suspend fun shipments() = flow {
-        shipmentDAO.loadAll().collect { listShipments ->
-            val domainList = listShipments.map { ship ->
-                ship.toDomain()
+        try {
+            shipmentDAO.loadAll().collect { listShipments ->
+                val domainList = listShipments.map { ship ->
+                    ship.toDomain()
+                }
+                emit(Result.success(domainList))
+                refresh()
             }
-            emit(domainList)
-            refresh()
+        }catch (ex: Exception) {
+            Result.failure<Any>(ex)
         }
     }
+
 
     override suspend fun archive(shipment: ShipmentDomain) {
         shipmentDAO.update(shipment.toDB())
