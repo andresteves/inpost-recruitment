@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:paddingBottom="@dimen/margin_top_space"
+    android:layout_height="wrap_content">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/shipment_number_header_view"
@@ -14,10 +15,10 @@
         android:layout_marginStart="@dimen/margin_horizontal"
         android:layout_marginTop="@dimen/margin_top_space"
         android:layout_marginEnd="@dimen/margin_sm"
+        android:text="@string/ship_number_header"
         app:layout_constraintEnd_toStartOf="@+id/shipment_type_view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/ship_number_header" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/shipment_number_view"
@@ -55,10 +56,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_horizontal"
         android:layout_marginTop="@dimen/margin_top_space"
+        android:text="@string/ship_status_header"
         app:layout_constraintEnd_toStartOf="@id/guideline_view"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/shipment_number_view"
-        tools:text="@string/ship_status_header" />
+        app:layout_constraintTop_toBottomOf="@id/shipment_number_view" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/shipment_status_view"
@@ -77,20 +78,22 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_horizontal"
+        android:text="@string/status_other"
+        android:textAllCaps="true"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@id/guideline_view"
-        app:layout_constraintTop_toTopOf="@id/shipment_status_header_view"
-        tools:text="@string/status_other" />
+        app:layout_constraintTop_toTopOf="@id/shipment_status_header_view" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/shipment_date_view"
         style="@style/ShipmentNumber"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="invisible"
-        android:layout_marginEnd="@dimen/margin_horizontal"
         android:layout_marginStart="@dimen/margin_horizontal"
+        android:layout_marginEnd="@dimen/margin_horizontal"
+        android:visibility="invisible"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideline_view"
         app:layout_constraintTop_toBottomOf="@id/shipment_secondary_status_header_view"
         tools:text="pn. | 14.06.18 | 11:30" />
@@ -102,9 +105,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_horizontal"
         android:layout_marginTop="@dimen/margin_top_space"
+        android:text="@string/ship_user_header"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/shipment_status_view"
-        tools:text="@string/ship_user_header" />
+        app:layout_constraintTop_toBottomOf="@id/shipment_status_view" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/shipment_user_view"
@@ -121,14 +124,14 @@
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/more_view"
         style="@style/ShipmentBody"
-        android:textSize="12sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawablePadding="@dimen/margin_sm"
         android:layout_marginEnd="@dimen/margin_horizontal"
         android:drawableEnd="@drawable/ic_arrow_forward"
+        android:drawablePadding="@dimen/margin_sm"
+        android:text="@string/more"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="@string/more" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

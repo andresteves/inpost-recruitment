@@ -26,10 +26,6 @@ internal class ShipmentGateway @Inject constructor(
         shipmentDAO.update(shipment.toDB())
     }
 
-    override suspend fun unarchive(shipment: ShipmentDomain) {
-        shipmentDAO.update(shipment.toDB())
-    }
-
     override suspend fun refresh() {
         shipmentApi.getShipments().forEach { shipmentNetwork ->
             if (shipmentDAO.isArchived(shipmentNetwork.number) == true) {

@@ -8,7 +8,5 @@ interface ShipmentRepository {
 
     suspend fun archive(shipment: ShipmentDomain)
 
-    suspend fun unarchive(shipment: ShipmentDomain)
-
     suspend fun refresh()
 }

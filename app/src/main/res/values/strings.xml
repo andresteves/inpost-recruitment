@@ -5,4 +5,10 @@
     <string name="ship_number_header">NR PRZESYŁKI</string>
     <string name="ship_status_header">STATUS</string>
     <string name="ship_user_header">NADAWCA</string>
+    <string name="other_header">Pozostałe</string>
+    <string name="highlight_header">Highlight</string>
+    <string name="code_expiration">Code expires on</string>
+    <string name="delivery_until">Delivery until</string>
+    <string name="ready_to_pickup">Ready to pickup</string>
+    <string name="archive">Archive\n</string>
 </resources>

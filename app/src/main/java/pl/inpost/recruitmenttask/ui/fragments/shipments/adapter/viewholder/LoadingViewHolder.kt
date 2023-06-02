@@ -1,4 +1,4 @@
-package pl.inpost.recruitmenttask.ui.shipments.adapter.viewholder
+package pl.inpost.recruitmenttask.ui.fragments.shipments.adapter.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
 import pl.inpost.recruitmenttask.databinding.ShipmentItemLoadingBinding
