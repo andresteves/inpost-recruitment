@@ -1,4 +1,4 @@
-package pl.inpost.recruitmenttask.util
+package pl.inpost.recruitmenttask.extensions
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner

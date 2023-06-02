@@ -11,7 +11,7 @@ import pl.inpost.recruitmenttask.ui.fragments.shipments.adapter.model.ShipmentLi
 import pl.inpost.recruitmenttask.ui.fragments.shipments.adapter.viewholder.LoadingViewHolder
 import pl.inpost.recruitmenttask.ui.fragments.shipments.adapter.viewholder.ShipmentHeaderViewHolder
 import pl.inpost.recruitmenttask.ui.fragments.shipments.adapter.viewholder.ShipmentViewHolder
-import pl.inpost.recruitmenttask.util.inflater
+import pl.inpost.recruitmenttask.extensions.inflater
 import pl.inpost.recruitmenttask.util.simpleDiffUtil
 
 private const val HEADER = 0

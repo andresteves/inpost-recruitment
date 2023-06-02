@@ -11,4 +11,7 @@
     <string name="delivery_until">Delivery until</string>
     <string name="ready_to_pickup">Ready to pickup</string>
     <string name="archive">Archive\n</string>
+    <string name="no_internet_title">No internet connection available!</string>
+    <string name="hide">Hide</string>
+    <string name="no_items_available">No items available! Pull down to refresh list.</string>
 </resources>

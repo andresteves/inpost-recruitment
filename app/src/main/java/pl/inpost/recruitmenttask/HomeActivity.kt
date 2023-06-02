@@ -1,5 +1,6 @@
 package pl.inpost.recruitmenttask
 
+import android.net.ConnectivityManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint

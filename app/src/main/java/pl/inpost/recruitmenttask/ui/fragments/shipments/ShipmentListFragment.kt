@@ -2,11 +2,9 @@ package pl.inpost.recruitmenttask.ui.fragments.shipments
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +15,8 @@ import pl.inpost.recruitmenttask.domain.shipments.model.ShipmentDomain
 import pl.inpost.recruitmenttask.ui.fragments.shipments.adapter.ShipmentsAdapter
 import pl.inpost.recruitmenttask.ui.common.VerticalSpacingDecorator
 import pl.inpost.recruitmenttask.ui.dialogs.ShipmentActionDialog
-import pl.inpost.recruitmenttask.util.collectWhenStarted
+import pl.inpost.recruitmenttask.extensions.collectWhenStarted
+import pl.inpost.recruitmenttask.util.network.NetworkChanges
 
 @AndroidEntryPoint
 class ShipmentListFragment : Fragment() {
@@ -78,13 +77,22 @@ class ShipmentListFragment : Fragment() {
                 }
             }
         }
+
+        val networkWatcher = NetworkChanges(refreshView)
+        networkWatcher.networkConnection.observe(viewLifecycleOwner) { available ->
+            if (available) {
+                viewModel.refresh()
+            }
+        }
+        networkWatcher.checkInternetConnection(requireContext())
     }
 
-    private fun initObservers() {
+    private fun initObservers() = with(binding) {
         viewModel.state.collectWhenStarted(viewLifecycleOwner) { state ->
             when (state) {
                 State.Loading -> {}
                 is State.Shipments -> {
+                    emptyTextView.isVisible = state.shipments.isEmpty()
                     shipmentAdapter.submitList(state.shipments)
                 }
             }

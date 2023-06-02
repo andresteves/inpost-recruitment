@@ -118,11 +118,11 @@ internal class ShipmentListViewModelTest {
             viewModel.filter(FilterType.READY_PICKUP)
         }
 
-        backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) {
+        backgroundScope.launch(StandardTestDispatcher(testScheduler)) {
             viewModel.state.collect {
                 it.shouldBeTypeOf<State.Shipments>()
                 with(it as State.Shipments) {
-                    it.shipments.size shouldBe 3
+                    it.shipments.size shouldBe 2
                     it.shipments[0].shouldBeTypeOf<ShipmentListItem.ListHeader>()
                     (it.shipments[1] as ShipmentListItem.ListItem).shipment.status shouldBe ShipmentStatus.READY_TO_PICKUP
                 }

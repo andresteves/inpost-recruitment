@@ -71,18 +71,19 @@ class ShipmentListViewModel @Inject constructor(
     private fun handleShipments(shipmentDomains: List<ShipmentDomain>) {
         val items = mutableListOf<ShipmentListItem>()
 
-        items.add(ShipmentListItem.ListHeader(R.string.highlight_header))
-
         val highlightShipments = shipmentDomains
             .filter { it.operations.highlight }
             .sortedWith(ShipmentComparator())
             .map { ShipmentListItem.ListItem(it) }
-        items.addAll(highlightShipments)
 
-        items.add(ShipmentListItem.ListHeader(R.string.other_header))
+        if (highlightShipments.isNotEmpty()) {
+            items.add(ShipmentListItem.ListHeader(R.string.highlight_header))
+            items.addAll(highlightShipments)
+        }
 
-        shipmentDomains
-            .filter { !it.operations.highlight }
+        val nonHighlight = shipmentDomains.filter { !it.operations.highlight }
+        if (nonHighlight.isNotEmpty()) items.add(ShipmentListItem.ListHeader(R.string.other_header))
+        nonHighlight
             .sortedWith(ShipmentComparator())
             .groupBy { it.status }.map { mapShipments ->
                 items.add(ShipmentListItem.ListHeader(mapShipments.key.nameRes))
